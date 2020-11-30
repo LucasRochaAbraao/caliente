@@ -14,10 +14,10 @@ from config import Config
 
 app = FastAPI()
 
-temp, hum = pegar_dados.temp_hum(Config)
 
 @app.get("/api")
 def read_root():
+    temp, hum = pegar_dados.temp_hum(Config)
     return {
         "temp": temp,
         "hum" : hum
@@ -33,7 +33,7 @@ templates = Jinja2Templates(directory="web_client")
 
 @app.get("/")
 async def web_client(request: Request):
-    print(temp, hum)
+    temp, hum = pegar_dados.temp_hum(Config)
     return templates.TemplateResponse("index.html", {
         "request": request,
         "temp": float(temp),
