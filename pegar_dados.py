@@ -5,7 +5,8 @@ def temp_hum(config):
     IP = config.get_ip()
     response = urllib.request.urlopen(f'http://{IP}:4200/') #ip temporário
     #soup = BeautifulSoup(response.read(), from_encoding=response.headers.getparam('charset'))
-    soup = BeautifulSoup(response.read(), features="lxml")
+    #soup = BeautifulSoup(response.read(), features="lxml")
+    soup = BeautifulSoup(response.read(), "html.parser")
 
     temp = None
     for line in soup.find('div', {'class': 'temp'}).stripped_strings:
