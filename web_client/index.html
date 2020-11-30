@@ -10,13 +10,13 @@
 <body>
     <h1>Sensor Lab CGR</h1>
     <div id="temp">
-        <div class="{% if temp >= 50 %}alto{% endif %}{% if temp < 50 %}baixo{% endif %}">
+        <div class="{% if temp >= 30 %}alto{% endif %}{% if temp < 30 %}baixo{% endif %}">
             <p><span class="texto">Temperatura</span></p>
             <p>{{ temp }} <span style="color:#555;font-size:12px;">ºC</span><p>
         </div>
     </div>
     <div id="hum">
-        <div class="{% if hum >= 80 %}alto{% endif %}{% if hum < 80 %}baixo{% endif %}">
+        <div class="{% if hum >= 70 %}alto{% endif %}{% if hum < 70 %}baixo{% endif %}">
             <p><span class="texto">Humidade</span></p>
             <p>{{ hum }} <span style="color:#555;font-size:12px;">%</span><p>
         </div>
