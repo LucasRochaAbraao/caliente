@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Caliente</title>
+  <meta name="Visualizador de temperatura" content="Temperatura de OLTs Quick">
+  <meta name="Lucas Rocha Abraão">
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <h1>OLT Bela Roma</h1>
+    <div id="temp">
+        <div class="{% if temp >= 50 %}alto{% endif %}{% if temp < 50 %}baixo{% endif %}">
+            <p><span class="texto">Temperatura</span></p>
+            <p>{{ temp }} <span style="color:#555;font-size:12px;">ºC</span><p>
+        </div>
+    </div>
+    <div id="hum">
+        <div class="{% if hum >= 80 %}alto{% endif %}{% if hum < 80 %}baixo{% endif %}">
+            <p><span class="texto">Humidade</span></p>
+            <p>{{ hum }} <span style="color:#555;font-size:12px;">%</span><p>
+        </div>
+    </div>
+</body>
+</html>
