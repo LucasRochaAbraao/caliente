@@ -34,7 +34,7 @@ templates = Jinja2Templates(directory="web_client")
 @app.get("/")
 async def web_client(request: Request):
     print(temp, hum)
-    return templates.TemplateResponse("placeholder.html", {
+    return templates.TemplateResponse("index.html", {
         "request": request,
         "temp": float(temp),
         "hum":float(hum)

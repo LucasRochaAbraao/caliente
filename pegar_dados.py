@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 
 def temp_hum(config):
     IP = config.get_ip()
-    print(IP)
     response = urllib.request.urlopen(f'http://{IP}:4200/') #ip temporário
     #soup = BeautifulSoup(response.read(), from_encoding=response.headers.getparam('charset'))
     soup = BeautifulSoup(response.read(), features="lxml")
