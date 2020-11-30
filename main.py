@@ -10,10 +10,11 @@ from fastapi import FastAPI
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(BASE_PATH)
 import pegar_dados
+from config import Config
 
 app = FastAPI()
 
-temp, hum = pegar_dados.temp_hum()
+temp, hum = pegar_dados.temp_hum(Config)
 
 @app.get("/api")
 def read_root():

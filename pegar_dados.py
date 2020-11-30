@@ -1,11 +1,9 @@
 import urllib.request
 from bs4 import BeautifulSoup
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_PATH)
-from config import Config
 
-def temp_hum():
-    IP = Config.get_ip()
+def temp_hum(config):
+    IP = config.get_ip()
+    print(IP)
     response = urllib.request.urlopen(f'http://{IP}:4200/') #ip temporário
     #soup = BeautifulSoup(response.read(), from_encoding=response.headers.getparam('charset'))
     soup = BeautifulSoup(response.read(), features="lxml")
@@ -20,5 +18,5 @@ def temp_hum():
     return temp, hum
 
 if __name__ == '__main__':
-    temp, hum = temp_hum()
+    temp, hum = temp_hum(config)
     print(temp, hum)
