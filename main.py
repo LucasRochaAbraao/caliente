@@ -14,14 +14,14 @@ from config import Config
 
 app = FastAPI()
 
-
 @app.get("/api")
 def read_root():
-    temp, hum = pegar_dados.temp_hum(Config)
-    return {
-        "temp": temp,
-        "hum" : hum
-    }
+    response = pegar_dados.temp_hum(Config)
+
+    if response == 404:
+        return {"Pagina": "Não encontrada"}
+
+    return response
 
 #@app.get("/items/{item_id}")
 #def read_item(item_id: int, q: Optional[str] = None):
@@ -33,12 +33,17 @@ templates = Jinja2Templates(directory="web_client")
 
 @app.get("/")
 async def web_client(request: Request):
-    temp, hum = pegar_dados.temp_hum(Config)
+    #temp, hum = pegar_dados.temp_hum(Config)
+    response = pegar_dados.temp_hum(Config)
+
+    if response == 404:
+        return templates.TemplateResponse("notfound404.html", {"request": request})
+
     return templates.TemplateResponse("index.html", {
         "request": request,
-        "temp": float(temp),
-        "hum":float(hum)
+        "temp": float(response.get('temp')),
+        "hum":float(response.get('hum'))
     })
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=4200)
+    uvicorn.run(app, host="0.0.0.0", port=4203)

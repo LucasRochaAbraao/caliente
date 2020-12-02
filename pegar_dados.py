@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 
 def temp_hum(config):
     IP = config.get_ip()
-    response = urllib.request.urlopen(f'http://{IP}:4200/') #ip temporário
+    try:
+        response = urllib.request.urlopen(f'http://{IP}:4200/', timeout=3) #ip temporário
+    except:
+        return 404
     #soup = BeautifulSoup(response.read(), from_encoding=response.headers.getparam('charset'))
     #soup = BeautifulSoup(response.read(), features="lxml")
     soup = BeautifulSoup(response.read(), "html.parser")
@@ -15,7 +18,11 @@ def temp_hum(config):
     for line in soup.find('div', {'class': 'hum'}).stripped_strings:
         hum = line
     
-    return temp, hum
+    return {
+        "response": response,
+        "temp": temp,
+        "hum": hum
+    }
 
 if __name__ == '__main__':
     temp, hum = temp_hum(config)
