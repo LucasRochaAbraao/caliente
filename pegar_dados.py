@@ -20,8 +20,8 @@ def temp_hum(config):
     
     return {
         "response": response,
-        "temp": temp,
-        "hum": hum
+        "temp": float(temp),
+        "hum": float(hum)
     }
 
 if __name__ == '__main__':
