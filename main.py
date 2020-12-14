@@ -4,7 +4,7 @@ import uvicorn
 from typing import Optional
 from fastapi import Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Template
+from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
